@@ -1,0 +1,826 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Austin | Portfolio</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #050816;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: #2563eb;
+            filter: blur(180px);
+            opacity: 0.18;
+            top: -150px;
+            left: -150px;
+            z-index: -1;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: #9333ea;
+            filter: blur(180px);
+            opacity: 0.15;
+            bottom: -200px;
+            right: -150px;
+            z-index: -1;
+        }
+
+        nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1100px;
+            padding: 15px 25px;
+            background: rgba(15, 23, 42, 0.78);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        nav h2 {
+            color: #60a5fa;
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #60a5fa;
+        }
+
+        #home {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 20px 60px;
+        }
+
+        .hero {
+            max-width: 850px;
+        }
+
+        .profile-pic {
+            width: 190px;
+            height: 190px;
+            margin: 0 auto 30px;
+            padding: 5px;
+            border-radius: 50%;
+            background: linear-gradient(
+                135deg,
+                #3b82f6,
+                #8b5cf6,
+                #22d3ee
+            );
+            box-shadow:
+                0 0 30px rgba(59,130,246,0.4),
+                0 0 70px rgba(139,92,246,0.15);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+            background: #111827;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .hero-small {
+            color: #60a5fa;
+            font-size: 17px;
+            margin-bottom: 15px;
+            letter-spacing: 3px;
+        }
+
+        .hero h1 {
+            font-size: clamp(50px, 9vw, 90px);
+            margin-bottom: 20px;
+            background: linear-gradient(
+                90deg,
+                #60a5fa,
+                #a78bfa,
+                #22d3ee
+            );
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            color: #94a3b8;
+            font-size: 20px;
+            line-height: 1.7;
+        }
+
+        .buttons {
+            margin-top: 35px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            border: 1px solid #3b82f6;
+        }
+
+        .primary {
+            background: #3b82f6;
+            color: white;
+            box-shadow:
+                0 0 25px rgba(59,130,246,0.35);
+        }
+
+        .secondary {
+            color: #93c5fd;
+            background: rgba(59,130,246,0.05);
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow:
+                0 10px 30px rgba(59,130,246,0.3);
+        }
+
+        section {
+            padding: 110px 8%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 45px;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #64748b;
+        }
+
+        .glass {
+            background: rgba(15,23,42,0.65);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            transition: 0.3s;
+        }
+
+        .glass:hover {
+            transform: translateY(-5px);
+            border-color: rgba(96,165,250,0.4);
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .glass h3 {
+            color: #60a5fa;
+            margin-bottom: 15px;
+            font-size: 23px;
+        }
+
+        .glass p {
+            color: #94a3b8;
+            line-height: 1.8;
+        }
+
+        .info-list {
+            display: grid;
+            gap: 15px;
+        }
+
+        .info-item {
+            background: rgba(255,255,255,0.03);
+            padding: 15px;
+            border-radius: 10px;
+            color: #cbd5e1;
+        }
+
+        .info-item span {
+            color: #60a5fa;
+            font-weight: bold;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(230px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            padding: 30px;
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(30,41,59,0.8),
+                    rgba(15,23,42,0.8)
+                );
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.07);
+            transition: 0.35s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: #3b82f6;
+            box-shadow:
+                0 15px 40px rgba(37,99,235,0.15);
+        }
+
+        .card-icon {
+            font-size: 38px;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            margin-bottom: 12px;
+            color: #60a5fa;
+        }
+
+        .card p {
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+
+        .resume {
+            text-align: center;
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(37,99,235,0.12),
+                    rgba(147,51,234,0.08)
+                );
+            border: 1px solid rgba(96,165,250,0.2);
+            border-radius: 25px;
+            padding: 60px 30px;
+        }
+
+        .resume h2 {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .resume p {
+            color: #94a3b8;
+            max-width: 600px;
+            margin: auto;
+            line-height: 1.7;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .contact-card {
+            text-align: center;
+            padding: 30px 20px;
+            background: rgba(15,23,42,0.7);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            transition: 0.3s;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-8px);
+            border-color: #3b82f6;
+            box-shadow:
+                0 15px 40px rgba(37,99,235,0.15);
+        }
+
+        .contact-icon {
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        .contact-card h3 {
+            color: #60a5fa;
+            margin-bottom: 10px;
+        }
+
+        .contact-card p {
+            color: #94a3b8;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            border-top:
+                1px solid rgba(255,255,255,0.05);
+            color: #64748b;
+        }
+
+        @media (max-width: 700px) {
+
+            nav {
+                width: 95%;
+                padding: 12px 15px;
+            }
+
+            nav ul {
+                gap: 10px;
+                font-size: 12px;
+            }
+
+            nav h2 {
+                font-size: 16px;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 90px 6%;
+            }
+
+            .hero p {
+                font-size: 17px;
+            }
+
+            .profile-pic {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<nav>
+
+    <h2>AUSTIN</h2>
+
+    <ul>
+
+        <li>
+            <a href="#home">Home</a>
+        </li>
+
+        <li>
+            <a href="#about">About</a>
+        </li>
+
+        <li>
+            <a href="#explore">Explore</a>
+        </li>
+
+        <li>
+            <a href="#resume">Resume</a>
+        </li>
+
+        <li>
+            <a href="#contact">Contact</a>
+        </li>
+
+    </ul>
+
+</nav>
+
+
+<section id="home">
+
+    <div class="hero">
+
+        <div class="profile-pic">
+
+            <img
+                src="pfp.png"
+                alt="Austin's Profile Picture"
+            >
+
+        </div>
+
+        <div class="hero-small">
+
+            WELCOME TO MY PORTFOLIO
+
+        </div>
+
+        <h1>
+
+            Hi, I'm Austin
+
+        </h1>
+
+        <p>
+
+            A Grade 10 student at Gonzaga National High School,
+            ATP trainee at Lyceum of Aparri, and an aspiring engineer.
+
+        </p>
+
+        <div class="buttons">
+
+            <a href="#about" class="btn primary">
+
+                About Me →
+
+            </a>
+
+            <a href="#explore" class="btn secondary">
+
+                Explore
+
+            </a>
+
+            <a href="#contact" class="btn secondary">
+
+                Contact Me
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section id="about">
+
+    <div class="section-title">
+
+        <h2>About Me</h2>
+
+        <p>Get to know me</p>
+
+    </div>
+
+    <div class="about-container">
+
+        <div class="glass">
+
+            <h3>Who I Am</h3>
+
+            <p>
+
+                I am a Grade 10 student at Gonzaga National
+                High School. I am interested in technology,
+                learning new skills, solving problems, and
+                exploring opportunities that can help me
+                prepare for my future career.
+
+            </p>
+
+            <br>
+
+            <p>
+
+                I am also an ATP trainee at Lyceum of Aparri,
+                where I gain experience and learn skills that
+                can help me in the future.
+
+            </p>
+
+        </div>
+
+        <div class="glass">
+
+            <h3>My Information</h3>
+
+            <div class="info-list">
+
+                <div class="info-item">
+
+                    <span>School:</span>
+
+                    Gonzaga National High School
+
+                </div>
+
+                <div class="info-item">
+
+                    <span>Grade:</span>
+
+                    Grade 10
+
+                </div>
+
+                <div class="info-item">
+
+                    <span>Training:</span>
+
+                    ATP Trainee
+
+                </div>
+
+                <div class="info-item">
+
+                    <span>Training School:</span>
+
+                    Lyceum of Aparri
+
+                </div>
+
+                <div class="info-item">
+
+                    <span>Career Goal:</span>
+
+                    Aspiring Engineer
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section id="explore">
+
+    <div class="section-title">
+
+        <h2>Explore</h2>
+
+        <p>
+
+            My interests, skills, and future goals
+
+        </p>
+
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+
+            <div class="card-icon">
+                ⚙️
+            </div>
+
+            <h3>
+                Engineering
+            </h3>
+
+            <p>
+
+                My goal is to become a successful engineer
+                and develop skills that will help me solve
+                real-world problems.
+
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">
+                💻
+            </div>
+
+            <h3>
+                Technology
+            </h3>
+
+            <p>
+
+                I enjoy exploring computers, technology,
+                programming, and learning how different
+                systems work.
+
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">
+                🧠
+            </div>
+
+            <h3>
+                Learning
+            </h3>
+
+            <p>
+
+                I am always looking for new things to learn
+                and skills that can help me improve.
+
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">
+                🚀
+            </div>
+
+            <h3>
+                Future Goals
+            </h3>
+
+            <p>
+
+                I want to achieve my dreams, make my family
+                proud, and build a successful future.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section id="resume">
+
+    <div class="resume">
+
+        <h2>
+            My Resume
+        </h2>
+
+        <p>
+
+            Want to know more about my education, skills,
+            achievements, and experience?
+            Check out my resume.
+
+        </p>
+
+        <div class="buttons">
+
+            <a
+                href="https://canva.link/mmx8h055yhzkfqt"
+                target="_blank"
+                class="btn primary"
+            >
+
+                📄 View My Resume →
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section id="contact">
+
+    <div class="section-title">
+
+        <h2>
+            Contact Me
+        </h2>
+
+        <p>
+            Get in touch with me
+        </p>
+
+    </div>
+
+    <div class="contact-grid">
+
+        <div class="contact-card">
+
+            <div class="contact-icon">
+                📧
+            </div>
+
+            <h3>
+                Email
+            </h3>
+
+            <p>
+                austinjhayc@gmail.com
+            </p>
+
+        </div>
+
+
+        <div class="contact-card">
+
+            <div class="contact-icon">
+                📱
+            </div>
+
+            <h3>
+                Phone
+            </h3>
+
+            <p>
+                +63 905 652 1619
+            </p>
+
+        </div>
+
+
+        
+
+        </div>
+
+    </div>
+
+    <div class="buttons">
+
+        <a
+            href="#home"
+            class="btn secondary"
+        >
+
+            ↑ Back to Top
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    <p>
+
+        © 2026 Austin | Personal Portfolio
+
+    </p>
+
+</footer>
+
+</body>
+</html>
+```
